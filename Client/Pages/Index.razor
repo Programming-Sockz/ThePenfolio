@@ -1,9 +1,22 @@
 ﻿@page "/"
+@using ThePenfolio.Shared.libraries
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1 @onclick="Hello">@hello</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    [Inject] public HttpClient Http { get; set; }
+
+    private string hello = "Hello, World!";
+
+    private async Task Hello()
+    {
+        hello = await Http.GetStringAsync(ApiRoutes.Test.Get());
+        StateHasChanged();
+    }
+}
