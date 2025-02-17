@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePenfolio.Server", "Server\ThePenfolio.Server.csproj", "{32437F81-7DEA-4087-B7C3-26DF68AFD637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePenfolio.Client", "Client\ThePenfolio.Client.csproj", "{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePenfolio.Shared", "Shared\ThePenfolio.Shared.csproj", "{42798B2D-D8F4-4E67-86E7-893339EF6415}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32437F81-7DEA-4087-B7C3-26DF68AFD637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32437F81-7DEA-4087-B7C3-26DF68AFD637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32437F81-7DEA-4087-B7C3-26DF68AFD637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32437F81-7DEA-4087-B7C3-26DF68AFD637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42798B2D-D8F4-4E67-86E7-893339EF6415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42798B2D-D8F4-4E67-86E7-893339EF6415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42798B2D-D8F4-4E67-86E7-893339EF6415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42798B2D-D8F4-4E67-86E7-893339EF6415}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
