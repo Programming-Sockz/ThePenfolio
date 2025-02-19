@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePenfolio.Server", "Server\ThePenfolio.Server.csproj", "{32437F81-7DEA-4087-B7C3-26DF68AFD637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePenfolio.Server", "Server\ThePenfolio.Server.csproj", "{32437F81-7DEA-4087-B7C3-26DF68AFD637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePenfolio.Client", "Client\ThePenfolio.Client.csproj", "{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePenfolio.Client", "Client\ThePenfolio.Client.csproj", "{D6764418-A9FC-435C-95CF-DB18CB2D3FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePenfolio.Shared", "Shared\ThePenfolio.Shared.csproj", "{42798B2D-D8F4-4E67-86E7-893339EF6415}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePenfolio.Shared", "Shared\ThePenfolio.Shared.csproj", "{42798B2D-D8F4-4E67-86E7-893339EF6415}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{23535302-94B3-43BB-8390-B6DF8B314C3E}"
 EndProject
@@ -38,5 +38,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3376C528-0627-4B53-B986-FA7FC07EE25D}
 	EndGlobalSection
 EndGlobal

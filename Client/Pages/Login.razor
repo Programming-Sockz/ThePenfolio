@@ -1,0 +1,44 @@
+﻿@page "/login"
+@using Blazored.LocalStorage
+@using ThePenfolio.Shared.DTOs
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="Login">
+	<div class="loginHeader">
+		<header>Login</header>
+	</div>
+	<EditForm Model="login" OnValidSubmit="ValidSubmit">
+		<DataAnnotationsValidator/>
+		<div class="mailInput">
+			<label class="loginLabel">E-Mail:</label>
+			<input type="email" class="loginInput" placeholder="your@email.com" @bind-value="login.Email"/>
+			<div class="errorMessage">
+				<ValidationMessage For="()=>login.Email"/>
+			</div>
+		</div>
+		<div class="passwordInput">
+			<label class="loginLabel">Password</label>
+			<input class="loginInput" type="password" placeholder="YourPassword" @bind-value="login.Password"/>
+			<div class="errorMessage">
+				<ValidationMessage For="()=>login.Password"/>
+			</div>
+		</div>
+		<div class="errorMessageContainer">
+			@if(responseDTO != null && !responseDTO.Success)
+			{
+				<p class="validationError">@responseDTO.ErrorMessage</p>
+			}
+
+		</div>
+		<div class="submitContainer">
+			<button
+				class="submitButton"
+				type="submit"
+				disabled="@isSubmitting">
+				Login
+			</button>
+		</div>
+	</EditForm>
+
+</div>
+
