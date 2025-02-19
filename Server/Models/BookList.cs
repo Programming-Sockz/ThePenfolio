@@ -6,7 +6,6 @@ namespace ThePenfolio.Server.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
         public DateTime CreatedOn { get; set; }
         public Guid CreatedById { get; set; }
         public ListTypes ListType { get; set; }

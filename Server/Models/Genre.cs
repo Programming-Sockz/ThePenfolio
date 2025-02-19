@@ -7,6 +7,6 @@ namespace ThePenfolio.Server.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<BookGenre> BookGenres { get; set; }
+        public ICollection<BookGenre>? BookGenres { get; set; }
     }
 }

@@ -12,12 +12,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="Database and book Controller">
+    <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="DB ConnectionString">
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/BookListController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/DTOs/BookListDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/Scripts/GenreAndTagDump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Scripts/GenreAndTagDump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Tables/BookGenre.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Tables/BookGenre.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Tables/BookList.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Tables/BookList.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/BookList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/BookList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Chapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Chapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Genre.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Genre.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Tag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Tag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Services/ThePenfolioDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Services/ThePenfolioDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +37,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Server/Models/BookTags.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/thomas.kind/source/repos/ThePenfolio/Server/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="MigrationScriptOptions">
+    <option name="ignoreImplicitObjects" value="true" />
+    <option name="ignoreSourceCode" value="false" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -42,8 +57,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.ThePenfolio.Client: IIS Express.executor": "Debug",
-    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Debug",
+    ".NET Launch Settings Profile.ThePenfolio.Client: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -54,6 +69,11 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="Multi-Launch.Multi-Launch: ThePenfolio">
@@ -196,7 +216,7 @@
       <updated>1739797769146</updated>
       <workItem from="1739797770997" duration="1121000" />
       <workItem from="1739952975645" duration="1479000" />
-      <workItem from="1739954501429" duration="9155000" />
+      <workItem from="1739954501429" duration="17018000" />
     </task>
     <task id="LOCAL-00001" summary="test controller and frontend project init">
       <option name="closed" value="true" />
@@ -214,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739963207590</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="DB ConnectionString">
+      <option name="closed" value="true" />
+      <created>1739964745638</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739964745638</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +265,26 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="test controller and frontend project init" />
     <MESSAGE value="Database and book Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database and book Controller" />
+    <MESSAGE value="DB ConnectionString" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB ConnectionString" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Server/Controllers/BooksController.cs</url>
+          <line>150</line>
+          <properties documentPath="C:\Users\thomas.kind\source\repos\ThePenfolio\Server\Controllers\BooksController.cs" containingFunctionPresentation="Method 'BookSearch'">
+            <startOffsets>
+              <option value="4345" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4613" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

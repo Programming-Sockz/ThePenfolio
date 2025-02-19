@@ -156,14 +156,10 @@ namespace ThePenfolio.Server.Controllers
                 .ThenInclude(t=>t.Tag)
                 .AsQueryable();
             
-            if (books == null)
-            {
-                return new List<BookDTO>();
-            }
             
             if (!string.IsNullOrEmpty(search.Title))
             {
-                books = books.Where(x => x.Title.Contains(search.Title));
+                books = books.Where(x => x.Title.ToLower().Contains(search.Title.ToLower()));
             }
             
             if (search.AuthorId != Guid.Empty)
@@ -193,6 +189,12 @@ namespace ThePenfolio.Server.Controllers
             
             var searchResult = await books.ToListAsync();
 
+            
+            if (searchResult == null)
+            {
+                return new List<BookDTO>();
+            }
+            
             return searchResult.Adapt<List<BookDTO>>();
         }
     }

@@ -30,8 +30,8 @@ namespace ThePenfolio.Server.Services
                 .HasForeignKey(b => b.AuthorId);
 
             modelBuilder.Entity<Chapter>()
-                .HasOne<Book>()
-                .WithMany()
+                .HasOne(c => c.Book)
+                .WithMany(b => b.Chapters)
                 .HasForeignKey(c => c.BookId);
 
             modelBuilder.Entity<BookGenre>(entity =>
@@ -52,7 +52,7 @@ namespace ThePenfolio.Server.Services
 
             modelBuilder.Entity<BookTags>(entity =>
             {
-                entity.ToTable("BookTags");
+                entity.ToTable("BookTag");
                 entity.HasKey(e => new { e.BookId, e.TagId });
 
                 entity.HasOne(bg => bg.Book)

@@ -11,5 +11,7 @@ namespace ThePenfolio.Server.Models
         public DateTime LastEditedOn { get; set; }
         public string? AuthorNoteTop { get; set; }
         public string? AuthorNoteBottom { get; set; }
+        
+        public Book? Book { get; set; }
     }
 }
