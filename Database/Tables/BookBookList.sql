@@ -1,0 +1,8 @@
+CREATE TABLE BookBookList
+(
+    [BookId] UNIQUEIDENTIFIER NOT NULL,
+    [BookListId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_BookBookList] PRIMARY KEY ([BookId], [BookListId]),
+    CONSTRAINT [FK_BookBookList_Book] FOREIGN KEY ([BookId]) REFERENCEs [Books] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_BookBookList_BookList] FOREIGN KEY ([BookListId]) REFERENCEs [BookList] ([Id]) ON DELETE CASCADE,
+);

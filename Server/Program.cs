@@ -1,4 +1,5 @@
 using MapsterMapper;
+using ThePenfolio.Server.MappingConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,5 +52,7 @@ app.UseRouting();
 app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
+
+MappingConfig.RegisterMappings();
 
 app.Run();
