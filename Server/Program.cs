@@ -1,5 +1,7 @@
 using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
 using ThePenfolio.Server.MappingConfig;
+using ThePenfolio.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +19,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddRazorPages();
-//builder.Services.AddDbContext<BookanizerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ThePenfolioDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IMapper, Mapper>();
 
 var app = builder.Build();
