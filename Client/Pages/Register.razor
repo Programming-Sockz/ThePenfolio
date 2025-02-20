@@ -1,0 +1,46 @@
+@page "/register"
+
+<div class="Register">
+    <div class="RegisterHeader">
+        <header>Register</header>
+    </div>
+    <EditForm Model="register" OnValidSubmit="ValidSubmit">
+        <DataAnnotationsValidator/>
+        <div class="usernameInput">
+            <label class="registerLabel">Username:</label>
+            <input class="registerInput" placeholder="Select a Username"/>
+            <div class="errorMessage">
+                <ValidationMessage For="()=>register.Username"/>
+            </div>
+        </div>
+        <div class="mailInput">
+            <label class="registerLabel">E-Mail:</label>
+            <input class="registerInput" type="email" placeholder="your@email.com"/>
+            <div class="errorMessage">
+                <ValidationMessage For="()=>register.Email"/>
+            </div>
+        </div>
+        <div class="passwordInput">
+            <label class="registerLabel">Password:</label>
+            <input class="registerInput" type="password" placeholder="Select a password"/>
+            <div class="errorMessage">
+                <ValidationMessage For="()=>register.Password"/>
+            </div>
+        </div>
+        <div class="errorMessageContainer">
+            @if(responseDTO != null && responseDTO.Success)
+            {
+                <p class="validationError">@responseDTO.ErrorMessage</p>
+            }
+        </div>
+        <div class="submitContainer">
+            <button
+                    class="submitButton"
+                    type="submit"
+                    disabled="@isSubmitting"
+                    >
+                Register
+            </button>
+        </div>
+    </EditForm>
+</div>

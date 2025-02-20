@@ -53,5 +53,15 @@ namespace ThePenfolio.Shared.libraries
             public static string GET_BooksInList(Guid id, ListTypes listTypes)
             => $"_base/{id}/{(int)listTypes}";
         }
+
+        public static class User
+        {
+            const string _base = "api/User";
+
+            public static string POST_Register()
+                => $"{_base}/register";
+            public static string POST_Login()
+                => $"{_base}/login";
+        }
     }
 }

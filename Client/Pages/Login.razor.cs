@@ -19,7 +19,25 @@ namespace ThePenfolio.Client.Pages
 
         private async Task ValidSubmit()
         {
-    
+            if (!isSubmitting)
+            {
+                isSubmitting = true;
+                var response = await Http.PostAsJsonAsync(ApiRoutes.User.POST_Login(), login);
+                if (response.IsSuccessStatusCode)
+                {
+                    responseDTO = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
+
+                    if (responseDTO.Success)
+                    {
+                        await LocalStorageService.SetItemAsync(loginStorageKey, responseDTO);
+                        NavigationManager.NavigateTo("");
+                    }
+                    else
+                    {
+                        isSubmitting = false;
+                    }
+                }
+            }
         }
     }
 }
