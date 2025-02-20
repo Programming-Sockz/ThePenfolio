@@ -13,11 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="chapter fix und mehr :D">
-      <change afterPath="$PROJECT_DIR$/Shared/DTOs/BookToBookListDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Controllers/BookListController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/BookListController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/DTOs/BookListDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/BookListDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/libraries/ApiRoutes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/libraries/ApiRoutes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +57,7 @@
     ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "basic-login-page",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
