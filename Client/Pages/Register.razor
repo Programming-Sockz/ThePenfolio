@@ -8,37 +8,36 @@
         <DataAnnotationsValidator/>
         <div class="usernameInput">
             <label class="registerLabel">Username:</label>
-            <input class="registerInput" placeholder="Select a Username"/>
-            <div class="errorMessage">
-                <ValidationMessage For="()=>register.Username"/>
+            <input @bind-value="register.UserName" class="registerInput" placeholder="Select a Username"/>
+            <div class="validation-message">
+                <ValidationMessage For="()=>register.UserName"/>
             </div>
         </div>
         <div class="mailInput">
             <label class="registerLabel">E-Mail:</label>
-            <input class="registerInput" type="email" placeholder="your@email.com"/>
-            <div class="errorMessage">
+            <input @bind-value="register.Email" class="registerInput" type="email" placeholder="your@email.com"/>
+            <div class="validation-message">
                 <ValidationMessage For="()=>register.Email"/>
             </div>
         </div>
         <div class="passwordInput">
             <label class="registerLabel">Password:</label>
-            <input class="registerInput" type="password" placeholder="Select a password"/>
-            <div class="errorMessage">
+            <input @bind-value="register.Password" class="registerInput" type="password" placeholder="Select a password"/>
+            <div class="validation-message">
                 <ValidationMessage For="()=>register.Password"/>
             </div>
         </div>
         <div class="errorMessageContainer">
             @if(responseDTO != null && responseDTO.Success)
             {
-                <p class="validationError">@responseDTO.ErrorMessage</p>
+                <p class="validation-message">@responseDTO.ErrorMessage</p>
             }
         </div>
         <div class="submitContainer">
             <button
-                    class="submitButton"
-                    type="submit"
-                    disabled="@isSubmitting"
-                    >
+                class="submitButton"
+                type="submit"
+                disabled="@isSubmitting">
                 Register
             </button>
         </div>

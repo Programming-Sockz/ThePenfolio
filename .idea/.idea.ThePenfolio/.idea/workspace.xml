@@ -13,7 +13,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="#32 #24 #26">
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/model/LoginStamp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Login.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Register.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Register.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Register.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Pages/Register.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +38,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/thomas.kind/source/repos/ThePenfolio/Client/Pages/Login.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$APPLICATION_HOME_DIR$/lib/app.jar!/resources/html5-schema/html5/web-forms.rnc" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Models/BookTags.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -212,6 +218,7 @@
       <workItem from="1739952975645" duration="1479000" />
       <workItem from="1739954501429" duration="17682000" />
       <workItem from="1740039972235" duration="5982000" />
+      <workItem from="1740121079063" duration="6077000" />
     </task>
     <task id="LOCAL-00001" summary="test controller and frontend project init">
       <option name="closed" value="true" />
@@ -266,19 +273,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/basic-login-page" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>

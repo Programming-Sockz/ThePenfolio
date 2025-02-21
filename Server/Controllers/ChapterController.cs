@@ -56,17 +56,29 @@ namespace ThePenfolio.Server.Controllers
 
             return Ok();
         }
-        
+
         [HttpGet("{id}")]
-        public async Task <ActionResult<ChapterDTO>> GetChapterById(Guid id)
+        public async Task<ActionResult<ChapterDTO>> GetChapterById(Guid id)
         {
-            var chapter = await _context.Chapters.Include(x=>x.Book).ThenInclude(x=>x.Author).FirstOrDefaultAsync(x=>x.Id == id);
+            var chapter = await _context.Chapters
+                .Include(x=>x.Book)
+                    .ThenInclude(x=>x.Author)
+                .Include(x=>x.Book)
+                    .ThenInclude(x=>x.Chapters)
+                .FirstOrDefaultAsync(x=>x.Id == id);
 
             if (chapter == null)
             {
                 return NotFound();
             }
 
+            foreach(var bookChapter in chapter.Book.Chapters)
+            {
+                bookChapter.Content = "";
+                bookChapter.AuthorNoteBottom = "";
+                bookChapter.AuthorNoteTop = "";
+            }
+            
             return Ok(_mapper.Map<ChapterDTO>(chapter));
         }
     }

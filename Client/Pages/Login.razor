@@ -9,21 +9,21 @@
 		<div class="mailInput">
 			<label class="loginLabel">E-Mail:</label>
 			<input type="email" class="loginInput" placeholder="your@email.com" @bind-value="login.Email"/>
-			<div class="errorMessage">
+			<div class="validation-message">
 				<ValidationMessage For="()=>login.Email"/>
 			</div>
 		</div>
 		<div class="passwordInput">
 			<label class="loginLabel">Password</label>
 			<input class="loginInput" type="password" placeholder="YourPassword" @bind-value="login.Password"/>
-			<div class="errorMessage">
+			<div class="validation-message">
 				<ValidationMessage For="()=>login.Password"/>
 			</div>
 		</div>
 		<div class="errorMessageContainer">
 			@if(responseDTO != null && !responseDTO.Success)
 			{
-				<p class="validationError">@responseDTO.ErrorMessage</p>
+				<p class="validation-message">@responseDTO.ErrorMessage</p>
 			}
 
 		</div>
@@ -36,6 +36,4 @@
 			</button>
 		</div>
 	</EditForm>
-
 </div>
-
