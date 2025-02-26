@@ -7,7 +7,7 @@ using ThePenfolio.Shared.DTOs;
 namespace ThePenfolio.Server.Controllers
 {
     [ApiController]
-    [Route("/api/{Controller}")]
+    [Route("/api/[Controller]")]
     public class TagsController : ControllerBase
     {
         private readonly ThePenfolioDbContext _context;

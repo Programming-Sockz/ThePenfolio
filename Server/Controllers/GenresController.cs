@@ -8,7 +8,7 @@ using ThePenfolio.Shared.DTOs;
 namespace ThePenfolio.Server.Controllers
 {
     [ApiController]
-    [Route("/api/{Controller}")]
+    [Route("/api/[Controller]")]
     public class GenresController : ControllerBase
     {
         private readonly ThePenfolioDbContext _context;
