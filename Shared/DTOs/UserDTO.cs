@@ -9,5 +9,9 @@
         public string Bio { get; set; }
         public string? Image { get; set; }
         public bool IsActive { get; set; }
+        
+        public ICollection<BookDTO>? Books { get; set; }
+        public ICollection<UserBookReviewsDTO>? UserBookReviewsDTO { get; set; }
+        public ICollection<ChapterUserLikesDTO>? ChapterUserLikesDTO { get; set; }
     }
 }

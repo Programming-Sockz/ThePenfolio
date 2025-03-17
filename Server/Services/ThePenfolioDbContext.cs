@@ -16,6 +16,8 @@ namespace ThePenfolio.Server.Services
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ChapterUserLikes> ChapterUserLikes { get; set; }
+        public DbSet<UserBookReviews> UserBookReviews { get; set; }
         
         public ThePenfolioDbContext(DbContextOptions<ThePenfolioDbContext> options) : base(options)
         {
@@ -70,6 +72,34 @@ namespace ThePenfolio.Server.Services
             {
                 bbl.BookId,
                 bbl.BookListId
+            });
+            
+            modelBuilder.Entity<UserBookReviews>(entity => {
+                entity.HasKey(ubr => new { ubr.UserId, ubr.BookId });
+                
+                entity.HasOne(ubr => ubr.User)
+                    .WithMany(u => u.UserBookReviews)
+                    .HasForeignKey(ubr => ubr.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+                
+                entity.HasOne(ubr=>ubr.Book)
+                    .WithMany(b => b.UserBookReviews)
+                    .HasForeignKey(ubr => ubr.BookId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+            
+            modelBuilder.Entity<ChapterUserLikes>(entity => {
+                entity.HasKey(e => new { e.ChapterId, e.UserId });
+
+                entity.HasOne(u => u.User)
+                    .WithMany(u => u.ChapterUserLikes)
+                    .HasForeignKey(ubr => ubr.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+                
+                entity.HasOne(ubr => ubr.Chapter)
+                    .WithMany(c=> c.ChapterUserLikes)
+                    .HasForeignKey(ubr => ubr.ChapterId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             if (!string.IsNullOrWhiteSpace(Schema))

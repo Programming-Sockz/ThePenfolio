@@ -9,23 +9,15 @@ namespace ThePenfolio.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class BooksController(ThePenfolioDbContext context, IMapper mapper) : ControllerBase
     {
-        private readonly ThePenfolioDbContext _context;
-        private readonly IMapper _mapper;
-
-        public BooksController(ThePenfolioDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
 
         [HttpGet]
         public async Task<List<BookDTO>> Get()
         {
-            var books = await _context.Books.ToListAsync();
+            var books = await context.Books.ToListAsync();
 
-            var booksDTO = _mapper.Map<List<BookDTO>>(books);
+            var booksDTO = mapper.Map<List<BookDTO>>(books);
 
             return booksDTO;
         }
@@ -33,18 +25,37 @@ namespace ThePenfolio.Server.Controllers
         [HttpGet("name/{bookTitle}")]
         public async Task<ActionResult<List<BookDTO>>> GetByName(string bookTitle)
         {
-            var books = await _context.Books.Where(x => x.Title.Contains(bookTitle))
+            var books = await context.Books.Where(x => x.Title.Contains(bookTitle))
                 .Include(x => x.Author)
                 .Include(b => b.BookGenres)
                 .ThenInclude(bg => bg.Genre)
                 .Include(tg=>tg.BookTags)
                 .ThenInclude(t=>t.Tag)
+                .Include(b=>b.Chapters)
                 .ToListAsync();
             
             if (books == null)
             {
                 return new List<BookDTO>();
             }
+            
+            books = books.Select(book => 
+            {
+                book.Chapters = book.Chapters
+                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                    .Select(x => new Chapter
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Content = "",
+                        BookId = x.BookId,
+                        AuthorNoteBottom = "",
+                        AuthorNoteTop = "",
+                        ReleasedOn = x.ReleasedOn,
+                        CreatedOn = x.CreatedOn
+                    }).ToList();
+                return book;
+            }).ToList();
 
             return Ok(books.Adapt<List<BookDTO>>());
         }
@@ -52,7 +63,7 @@ namespace ThePenfolio.Server.Controllers
         [HttpGet("id/{bookId}")]
         public async Task<ActionResult<BookDTO>> GetById(Guid bookId)
         {
-            var book = await _context.Books
+            var book = await context.Books
                 .Include(x => x.Author)
                 .Include(b => b.BookGenres)
                 .ThenInclude(bg => bg.Genre)
@@ -66,20 +77,27 @@ namespace ThePenfolio.Server.Controllers
                 return NotFound();
             }
             
-            foreach(var chapter in book.Chapters)
-            {
-                chapter.Content = "";
-                chapter.AuthorNoteBottom = "";
-                chapter.AuthorNoteTop = "";
-            }
+            book.Chapters = book.Chapters
+                .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                .Select(x => new Chapter
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Content = "",
+                    BookId = x.BookId,
+                    AuthorNoteBottom = "",
+                    AuthorNoteTop = "",
+                    ReleasedOn = x.ReleasedOn,
+                    CreatedOn = x.CreatedOn
+                }).ToList();
 
-            return Ok(_mapper.Map<BookDTO>(book));
+            return Ok(book.Adapt<BookDTO>());
         }
 
         [HttpGet("reduced/id/{bookId}")]
         public async Task<ActionResult<BookDTO>> GetReducedById(Guid bookId)
         {
-            var book = await _context.Books
+            var book = await context.Books
                 .Include(x => x.Author)
                 .FirstOrDefaultAsync(x=>x.Id == bookId);
 
@@ -88,7 +106,7 @@ namespace ThePenfolio.Server.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<BookDTO>(book));
+            return Ok(mapper.Map<BookDTO>(book));
         }
 
         [HttpPost]
@@ -99,28 +117,76 @@ namespace ThePenfolio.Server.Controllers
                 return BadRequest();
             }
 
-            var book = _mapper.Map<Book>(bookDTO);
+            var book = mapper.Map<Book>(bookDTO);
             
-            _context.Books.Add(book);
+            context.Books.Add(book);
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
+
+            foreach (var genre in bookDTO.Genres)
+            {
+                context.BookGenre.Add(new()
+                {
+                    BookId = book.Id,
+                    GenreId = genre.Id
+                });
+            }
+
+            foreach (var genre in bookDTO.Tags)
+            {
+                context.BookTags.Add(new()
+                {
+                    BookId = book.Id,
+                    TagId = genre.Id
+                });
+            }
             
-            return Ok(book.Adapt<BookDTO>());
+            await context.SaveChangesAsync();
+            
+            return Ok();
         }
 
         [HttpPut("{bookId}")]
         public async Task<IActionResult> Put(Guid bookId, [FromBody] BookDTO bookDTO)
         {
-            var dbBook = await _context.Books.FindAsync(bookId);
+            var dbBook = await context.Books.FindAsync(bookId);
 
             if(dbBook == null)
             {
                 return NotFound();
             }
 
-            _mapper.From(bookDTO).AdaptTo(dbBook);
+            bookDTO.Author = null;
+            
+            bookDTO.Chapters = null;
+            
+            mapper.From(bookDTO).AdaptTo(dbBook);
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
+            
+            context.BookGenre.RemoveRange(context.BookGenre.Where(x => x.BookId == dbBook.Id));
+            
+            foreach (var genre in bookDTO.Genres)
+            {
+                context.BookGenre.Add(new()
+                {
+                    BookId = dbBook.Id,
+                    GenreId = genre.Id
+                });
+            }
+            
+            context.BookTags.RemoveRange(context.BookTags.Where(x => x.BookId == dbBook.Id));
+
+            foreach (var genre in bookDTO.Tags)
+            {
+                context.BookTags.Add(new()
+                {
+                    BookId = dbBook.Id,
+                    TagId = genre.Id
+                });
+            }
+            
+            await context.SaveChangesAsync();
 
             return Ok();
         }
@@ -128,32 +194,52 @@ namespace ThePenfolio.Server.Controllers
         [HttpGet("author/{id}")]
         public async Task<ActionResult<BookDTO>> GetByAuthor(Guid id)
         {
-            var book = await _context.Books
+            var books = await context.Books
                 .Where(x=>x.AuthorId == id)
                 .Include(x => x.Author)
                 .Include(b => b.BookGenres)
                 .ThenInclude(bg => bg.Genre)
                 .Include(tg => tg.BookTags)
                 .ThenInclude(t => t.Tag)
+                .Include(b=>b.Chapters)
                 .ToListAsync();
 
-            if(book == null)
+            if(books == null)
             {
                 return NotFound();
             }
 
-            return Ok(book.Adapt<List<BookDTO>>());
+            books = books.Select(book => 
+            {
+                book.Chapters = book.Chapters
+                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                    .Select(x => new Chapter
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Content = "",
+                        BookId = x.BookId,
+                        AuthorNoteBottom = "",
+                        AuthorNoteTop = "",
+                        ReleasedOn = x.ReleasedOn,
+                        CreatedOn = x.CreatedOn
+                    }).ToList();
+                return book;
+            }).ToList();
+            
+            return Ok(books.Adapt<List<BookDTO>>());
         }
 
         [HttpPost("search")]
         public async Task<List<BookDTO>> BookSearch([FromBody] BookSearchDTO search) 
         {
-            var books = _context.Books
+            var books = context.Books
                 .Include(x => x.Author)
                 .Include(b => b.BookGenres)
                 .ThenInclude(bg => bg.Genre)
                 .Include(tg=>tg.BookTags)
                 .ThenInclude(t=>t.Tag)
+                .Include(b=>b.Chapters)
                 .AsQueryable();
             
             
@@ -194,6 +280,24 @@ namespace ThePenfolio.Server.Controllers
             {
                 return new List<BookDTO>();
             }
+            
+            searchResult = searchResult.Select(book => 
+            {
+                book.Chapters = book.Chapters
+                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                    .Select(x => new Chapter
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Content = "",
+                        BookId = x.BookId,
+                        AuthorNoteBottom = "",
+                        AuthorNoteTop = "",
+                        ReleasedOn = x.ReleasedOn,
+                        CreatedOn = x.CreatedOn
+                    }).ToList();
+                return book;
+            }).ToList();
             
             return searchResult.Adapt<List<BookDTO>>();
         }

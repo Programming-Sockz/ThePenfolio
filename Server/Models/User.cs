@@ -14,5 +14,8 @@ namespace ThePenfolio.Server.Models
         public string Bio { get; set; }
         public string? Image { get; set; }
         public bool IsActive { get; set; }
+        
+        public ICollection<UserBookReviews>? UserBookReviews { get; set; }
+        public ICollection<ChapterUserLikes>? ChapterUserLikes { get; set; }
     }
 }

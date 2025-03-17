@@ -57,10 +57,11 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Scripts\" />
-    <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\GenreAndTagDump.sql" />
+    <Build Include="Tables\UserBookReviews.sql" />
+    <Build Include="Tables\ChapterUserLikes.sql" />
     <Build Include="Tables\Chapters.sql" />
     <Build Include="Tables\Genres.sql" />
     <Build Include="Tables\Tags.sql" />

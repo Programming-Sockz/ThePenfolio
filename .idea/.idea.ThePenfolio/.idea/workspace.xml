@@ -12,10 +12,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="#44 Login and register Logic&#10;minor login and register page fixes">
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/GenresController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/TagsController.cs" afterDir="false" />
+    <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Database/Tables/ChapterUserLikes.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/Tables/UserBookReviews.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/ChapterUserLikesController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Controllers/UserBookReviewController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Models/ChapterUserLikes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/Models/UserBookReviews.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/DTOs/ChapterUserLikesDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/DTOs/UserBookReviewsDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Database.sqlproj" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Database.sqlproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Tables/Chapters.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Tables/Chapters.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Interfaces/IThePenfolioDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Interfaces/IThePenfolioDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/MappingConfig/MappingConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/MappingConfig/MappingConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Book.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Book.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Chapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Chapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Services/ThePenfolioDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Services/ThePenfolioDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/DTOs/BookDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/BookDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/DTOs/ChapterDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/ChapterDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/DTOs/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/UserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/ThePenfolio.Shared.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/ThePenfolio.Shared.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +55,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$APPLICATION_HOME_DIR$/lib/app.jar!/resources/html5-schema/html5/web-forms.rnc" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/thomas.kind/source/repos/ThePenfolio/Server/Controllers/GenresController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/thomas.kind/source/repos/ThePenfolio/Server/Controllers/TagsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Server/Models/BookTags.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -51,27 +73,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.ThePenfolio.Client: IIS Express.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.ThePenfolio.Server: https.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.ThePenfolio.Client: IIS Express.executor": "Run",
+    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlserver.localdb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Multi-Launch.Multi-Launch: ThePenfolio">
     <configuration name="ThePenfolio.Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/ThePenfolio.Client.csproj" />
@@ -216,6 +238,8 @@
       <workItem from="1740039972235" duration="5982000" />
       <workItem from="1740121079063" duration="7145000" />
       <workItem from="1740134331197" duration="3444000" />
+      <workItem from="1740578967679" duration="857000" />
+      <workItem from="1742197782636" duration="16252000" />
     </task>
     <task id="LOCAL-00001" summary="test controller and frontend project init">
       <option name="closed" value="true" />
@@ -265,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740127705338</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Controller Route fix">
+      <option name="closed" value="true" />
+      <created>1740579761725</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740579761725</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,24 +324,12 @@
     <MESSAGE value="chapter fix und mehr :D" />
     <MESSAGE value="#32 #24 #26" />
     <MESSAGE value="#44 Login and register Logic&#10;minor login and register page fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="#44 Login and register Logic&#10;minor login and register page fixes" />
+    <MESSAGE value="Controller Route fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Controller Route fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Server/Controllers/BooksController.cs</url>
-          <line>150</line>
-          <properties documentPath="C:\Users\thomas.kind\source\repos\ThePenfolio\Server\Controllers\BooksController.cs" containingFunctionPresentation="Method 'BookSearch'">
-            <startOffsets>
-              <option value="4345" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4613" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Server/Controllers/BookListController.cs</url>
           <line>25</line>
@@ -335,6 +355,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Server/Controllers/ChapterController.cs</url>
+          <line>94</line>
+          <properties documentPath="C:\Users\thomas.kind\source\repos\ThePenfolio\Server\Controllers\ChapterController.cs" containingFunctionPresentation="Method 'GetChapterById'">
+            <startOffsets>
+              <option value="2894" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2916" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

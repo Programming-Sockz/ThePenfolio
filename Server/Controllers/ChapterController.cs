@@ -1,4 +1,5 @@
-﻿using MapsterMapper;
+﻿using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThePenfolio.Server.Models;
@@ -71,15 +72,27 @@ namespace ThePenfolio.Server.Controllers
             {
                 return NotFound();
             }
-
-            foreach(var bookChapter in chapter.Book.Chapters)
-            {
-                bookChapter.Content = "";
-                bookChapter.AuthorNoteBottom = "";
-                bookChapter.AuthorNoteTop = "";
-            }
             
-            return Ok(_mapper.Map<ChapterDTO>(chapter));
+            chapter.Book.Chapters = chapter.Book.Chapters
+                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                    .Select(x => new Chapter
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Content = "",
+                        BookId = x.BookId,
+                        AuthorNoteBottom = "",
+                        AuthorNoteTop = "",
+                        ReleasedOn = x.ReleasedOn,
+                        CreatedOn = x.CreatedOn
+                    }).ToList();
+
+            
+            var chapterDTO = _mapper.Map<ChapterDTO>(chapter);
+            
+            chapterDTO.Book = chapter.Book.Adapt<BookDTO>();
+            
+            return Ok(chapterDTO);
         }
     }
 }

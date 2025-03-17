@@ -13,6 +13,8 @@ namespace ThePenfolio.Server.Interfaces
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ChapterUserLikes> ChapterUserLikes { get; set; }
+        public DbSet<UserBookReviews> UserBookReviews { get; set; }
         
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

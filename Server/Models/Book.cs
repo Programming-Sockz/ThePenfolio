@@ -16,5 +16,6 @@ namespace ThePenfolio.Server.Models
         public ICollection<BookTags>? BookTags { get; set; }
         public ICollection<BookGenre>? BookGenres { get; set; }
         public ICollection<Chapter>? Chapters { get; set; }
+        public ICollection<UserBookReviews>? UserBookReviews { get; set; }
     }
 }
