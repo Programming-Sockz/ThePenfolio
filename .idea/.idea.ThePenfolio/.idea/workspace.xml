@@ -13,29 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Database/Tables/ChapterUserLikes.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Database/Tables/UserBookReviews.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/ChapterUserLikesController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Controllers/UserBookReviewController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Models/ChapterUserLikes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Models/UserBookReviews.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/DTOs/ChapterUserLikesDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/DTOs/UserBookReviewsDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Database.sqlproj" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Database.sqlproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Tables/Chapters.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Tables/Chapters.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/ChapterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Interfaces/IThePenfolioDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Interfaces/IThePenfolioDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/MappingConfig/MappingConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/MappingConfig/MappingConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Models/Book.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Book.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Models/Chapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/Chapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Services/ThePenfolioDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Services/ThePenfolioDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/DTOs/BookDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/BookDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/DTOs/ChapterDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/ChapterDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/DTOs/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/UserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/ThePenfolio.Shared.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/ThePenfolio.Shared.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/ChapterUserLikesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/ChapterUserLikesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/UserBookReviewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/UserBookReviewController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.ThePenfolio.Client: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Run",
+    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -94,7 +74,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Multi-Launch.Multi-Launch: ThePenfolio">
+  <component name="RunManager" selected=".NET Launch Settings Profile.ThePenfolio.Server: https">
     <configuration name="ThePenfolio.Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/ThePenfolio.Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -240,6 +220,7 @@
       <workItem from="1740134331197" duration="3444000" />
       <workItem from="1740578967679" duration="857000" />
       <workItem from="1742197782636" duration="16252000" />
+      <workItem from="1742286206166" duration="821000" />
     </task>
     <task id="LOCAL-00001" summary="test controller and frontend project init">
       <option name="closed" value="true" />

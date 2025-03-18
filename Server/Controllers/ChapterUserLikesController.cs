@@ -1,13 +1,13 @@
 ﻿using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
-using ThePenfolio.Server.Interfaces;
 using ThePenfolio.Server.Models;
+using ThePenfolio.Server.Services;
 using ThePenfolio.Shared.DTOs;
 namespace ThePenfolio.Server.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class ChapterUserLikesController(IMapper mapper, IThePenfolioDbContext context) : ControllerBase
+    public class ChapterUserLikesController(IMapper mapper, ThePenfolioDbContext context) : ControllerBase
     {
         [HttpPost]
         public async Task<IActionResult> CreateChapterUserLike(ChapterUserLikesDTO chapterUserLikesDTO)
