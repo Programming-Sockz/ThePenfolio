@@ -1,0 +1,14 @@
+﻿@page "/EditChapter/{ChapterId:guid}"
+@using ThePenfolio.Client.Shared.Components
+
+@if (!isLoading)
+{
+    if (userId != null)
+    {
+        <ChapterForm Chapter="@chapter" IsSubmitting="@isSubmitting" OnSubmit="OnSubmit" />
+    }
+    else
+    {
+        <NotLoggedIn />
+    }
+}

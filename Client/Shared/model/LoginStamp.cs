@@ -6,12 +6,13 @@ namespace ThePenfolio.Client.Shared.model
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         
-        public const string LoginStampStorageKey = "loginStamp";
+        public static string LoginStampStorageKey = "loginStamp";
 
         public LoginStamp(LoginResponseDTO loginResponse)
         {
             Id = loginResponse.LoginStamp.Value;
             UserId = loginResponse.UserId.Value;
         }
+        public LoginStamp(){} // For deserialization (fucking cunt)
     }
 }

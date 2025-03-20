@@ -13,9 +13,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2319b2f4-8a4b-4696-a91c-f32e8e66bc6e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Client/Pages/AddChapter.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/AddChapter.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/Dashboard.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/Dashboard.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/EditBook.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/EditBook.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/EditBook.razor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/EditChapter.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Pages/EditChapter.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/BookInformation.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/BookInformation.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/ChapterForm.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/ChapterForm.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/ChapterForm.razor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/ImageUpload.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/NotLoggedIn.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Components/NotLoggedIn.razor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Shared/Modals/ChapterListModal.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/wwwroot/Images/placeholder.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shared/Enums/ReleaseType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ThePenfolio/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Controllers/ChapterUserLikesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/ChapterUserLikesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/Controllers/UserBookReviewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/UserBookReviewController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/App.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Pages/Counter.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Shared/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Shared/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Shared/NavMenu.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Shared/model/LoginStamp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Shared/model/LoginStamp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/ThePenfolio.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Client/ThePenfolio.Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/wwwroot/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/wwwroot/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/BooksController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/GenresController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/GenresController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/TagsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Controllers/TagsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/DTOs/BookDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/DTOs/BookDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/libraries/ApiRoutes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/libraries/ApiRoutes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +87,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.ThePenfolio.Client: IIS Express.executor": "Run",
-    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Debug",
+    ".NET Launch Settings Profile.ThePenfolio.Server: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -74,7 +105,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.ThePenfolio.Server: https">
+  <component name="RunManager" selected="Multi-Launch.Multi-Launch: ThePenfolio">
     <configuration name="ThePenfolio.Client: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Client/ThePenfolio.Client.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -221,6 +252,9 @@
       <workItem from="1740578967679" duration="857000" />
       <workItem from="1742197782636" duration="16252000" />
       <workItem from="1742286206166" duration="821000" />
+      <workItem from="1742369503563" duration="5817000" />
+      <workItem from="1742459109422" duration="4843000" />
+      <workItem from="1742467687020" duration="2352000" />
     </task>
     <task id="LOCAL-00001" summary="test controller and frontend project init">
       <option name="closed" value="true" />
@@ -349,6 +383,53 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/Pages/EditBook.razor.cs</url>
+          <line>42</line>
+          <properties documentPath="C:\Users\thomas.kind\source\repos\ThePenfolio\Client\Pages\EditBook.razor.cs" containingFunctionPresentation="Method 'OnInitializedAsync'">
+            <startOffsets>
+              <option value="1470" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1545" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/Pages/EditBook.razor</url>
+          <line>28</line>
+          <properties isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/Pages/AddChapter.razor.cs</url>
+          <line>26</line>
+          <properties documentPath="C:\Users\thomas.kind\source\repos\ThePenfolio\Client\Pages\AddChapter.razor.cs" containingFunctionPresentation="Method 'OnInitializedAsync'">
+            <startOffsets>
+              <option value="817" />
+            </startOffsets>
+            <endOffsets>
+              <option value="834" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Client/Pages/EditChapter.razor.cs</url>
+          <line>25</line>
+          <properties documentPath="C:\Users\thomas.kind\source\repos\ThePenfolio\Client\Pages\EditChapter.razor.cs" containingFunctionPresentation="Method 'OnInitializedAsync'">
+            <startOffsets>
+              <option value="799" />
+            </startOffsets>
+            <endOffsets>
+              <option value="816" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -25,13 +25,13 @@ namespace ThePenfolio.Shared.libraries
             => $"{_base}/{title}";
             
             public static string GET_ById(Guid id) 
-                => $"{_base}/{id}";
+                => $"{_base}/id/{id}";
 
             public static string GET_ReducedById(Guid id) 
                 => $"{_base}/reduced/{id}";
 
-            public static string GET_ByAuthorId(Guid id) 
-                => $"{_base}/author/{id}";
+            public static string GET_ByAuthorId(Guid id, bool isAuthorView = false) 
+                => $"{_base}/author/{id}?isAuthorview={isAuthorView}";
             
             public static string PUT(Guid id)
                 => $"{_base}/{id}";
@@ -62,6 +62,66 @@ namespace ThePenfolio.Shared.libraries
                 => $"{_base}/register";
             public static string POST_Login()
                 => $"{_base}/login";
+        }
+        
+        public static class Tags
+        {
+            const string _base = "/api/Tags";
+            
+            public static string POST()
+                => $"{_base}";
+            
+            public static string GET_All()
+                => $"{_base}";
+            
+            public static string POST_UpdateTags()
+                => $"{_base}/updatetags";
+            
+            public static string DELETE_ById(Guid id)
+                => $"{_base}/{id}";
+            public static string GET_ById(Guid id)
+                => $"{_base}/{id}";
+            public static string GET_BooksById(Guid id)
+                => $"{_base}/books/{id}";
+            public static string GET_ByName(string name)
+                => $"{_base}/name/{name}";
+        }
+        
+        public static class Genres
+        {
+            const string _base = "/api/Genres";
+            
+            public static string POST()
+                => $"{_base}";
+            
+            public static string GET_All()
+                => $"{_base}";
+            
+            public static string POST_UpdateGenres()
+                => $"{_base}/updategenres";
+            
+            public static string DELETE_ById(Guid id)
+                => $"{_base}/{id}";
+            public static string GET_ById(Guid id)
+                => $"{_base}/{id}";
+            public static string GET_BooksById(Guid id)
+                => $"{_base}/books/{id}";
+            public static string GET_ByName(string name)
+                => $"{_base}/name/{name}";
+        }
+
+        public static class Chapter
+        {
+            const string _base = "/api/Chapter";
+            
+            public static string POST()
+                => $"{_base}";
+            public static string PUT()
+                => $"{_base}";
+            public static string DELETE(Guid id)
+                => $"{_base}/{id}";
+            public static string GET_ById(Guid id)
+                => $"{_base}/{id}";
         }
     }
 }

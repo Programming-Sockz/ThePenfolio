@@ -22,7 +22,7 @@ namespace ThePenfolio.Server.Controllers
         [HttpGet]
         public async Task<List<TagDTO>> GetTags()
         {
-            var tags = await _context.Tags.ToListAsync();
+            var tags = await _context.Tags.OrderBy(x=>x.Name).ToListAsync();
 
             return _mapper.Map<List<TagDTO>>(tags);
         }

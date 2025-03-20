@@ -1,0 +1,40 @@
+﻿<div class="row">
+    <div class="col-1">
+        @if (!string.IsNullOrEmpty(Book.Image))
+        {
+            <img src="@Book.Image" alt="Uploaded Image" style="width:100%" />
+        }
+        else
+        {
+            <img src="/Images/placeholder.jpg" style="width:100%" />
+        }
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h1>@Book.Title</h1>
+            </div>
+            @if(ChildContent != null)
+            {
+                <div class="col-1 text-end">
+                    @ChildContent
+                </div>
+            }
+        </div>
+        <p>@Book.Description</p>
+        <h2>Genres:</h2>
+        <div class="genre-container">
+            @foreach (var genre in Book.Genres)
+            {
+                <span class="genre-pill">@genre.Name</span>
+            }
+        </div>
+        <h2>Tags:</h2>
+        <div class="tag-container">
+            @foreach (var tag in Book.Tags)
+            {
+                <span class="tag-pill">@tag.Name</span>
+            }
+        </div>
+    </div>
+</div>

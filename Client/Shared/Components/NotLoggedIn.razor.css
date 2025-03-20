@@ -1,0 +1,8 @@
+﻿.not-logged-in-box {
+    background-color: #f8d7da;
+    margin:auto;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    width: 400px;
+    height: 400px;
+}

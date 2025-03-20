@@ -192,7 +192,7 @@ namespace ThePenfolio.Server.Controllers
         }
 
         [HttpGet("author/{id}")]
-        public async Task<ActionResult<BookDTO>> GetByAuthor(Guid id)
+        public async Task<ActionResult<BookDTO>> GetByAuthor(Guid id, [FromQuery] bool isAuthorView = false)
         {
             var books = await context.Books
                 .Where(x=>x.AuthorId == id)
@@ -209,23 +209,45 @@ namespace ThePenfolio.Server.Controllers
                 return NotFound();
             }
 
-            books = books.Select(book => 
+            if(isAuthorView)
             {
-                book.Chapters = book.Chapters
-                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
-                    .Select(x => new Chapter
-                    {
-                        Id = x.Id,
-                        Name = x.Name,
-                        Content = "",
-                        BookId = x.BookId,
-                        AuthorNoteBottom = "",
-                        AuthorNoteTop = "",
-                        ReleasedOn = x.ReleasedOn,
-                        CreatedOn = x.CreatedOn
-                    }).ToList();
-                return book;
-            }).ToList();
+                books = books.Select(book =>
+                {
+                    book.Chapters = book.Chapters
+                        .Select(x => new Chapter
+                        {
+                            Id = x.Id,
+                            Name = x.Name,
+                            Content = "",
+                            BookId = x.BookId,
+                            AuthorNoteBottom = "",
+                            AuthorNoteTop = "",
+                            ReleasedOn = x.ReleasedOn,
+                            CreatedOn = x.CreatedOn
+                        }).ToList();
+                    return book;
+                }).ToList();
+            }
+            else
+            {
+                books = books.Select(book =>
+                {
+                    book.Chapters = book.Chapters
+                        .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                        .Select(x => new Chapter
+                        {
+                            Id = x.Id,
+                            Name = x.Name,
+                            Content = "",
+                            BookId = x.BookId,
+                            AuthorNoteBottom = "",
+                            AuthorNoteTop = "",
+                            ReleasedOn = x.ReleasedOn,
+                            CreatedOn = x.CreatedOn
+                        }).ToList();
+                    return book;
+                }).ToList();
+            }
             
             return Ok(books.Adapt<List<BookDTO>>());
         }

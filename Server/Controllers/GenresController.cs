@@ -23,7 +23,7 @@ namespace ThePenfolio.Server.Controllers
         [HttpGet]
         public async Task<List<GenreDTO>> GetGenres()
         {
-            var genres = await _context.Genres.ToListAsync();
+            var genres = await _context.Genres.OrderBy(x=>x.Name).ToListAsync();
 
             return _mapper.Map<List<GenreDTO>>(genres);
         }

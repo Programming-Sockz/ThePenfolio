@@ -1,0 +1,27 @@
+﻿@page "/Dashboard"
+@using AntDesign
+@using ThePenfolio.Client.Shared.Components
+
+@if(!isLoading)
+{
+    if(userId != null)
+    {
+        <button @onclick="() => NavigateToEditBook(null)">New Book</button>
+    
+        <br />
+    
+        @foreach(var book in books)
+        {
+            <BookInformation Book="book">
+                <Icon @onclick="() => OpenChapterModal(book)" Type="unordered-list" Theme="IconThemeType.Outline"/>
+                <Icon @onclick="() => CreateChapter(book.Id)" Type="plus" Theme="IconThemeType.Outline"/>
+                <Icon @onclick="() => NavigateToEditBook(book.Id)" Type="edit" Theme="IconThemeType.Outline"/>
+                @* <Icon Type="delete" Theme="IconThemeType.Outline"/> *@
+            </BookInformation>
+        }
+    }
+    else
+    {
+        <NotLoggedIn />
+    }
+}

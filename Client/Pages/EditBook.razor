@@ -1,0 +1,81 @@
+﻿@page "/EditBook"
+@page "/EditBook/{Id:guid}"
+@using AntDesign
+@using ThePenfolio.Client.Shared.Components
+@using ThePenfolio.Shared.DTOs
+
+@if (!isLoading)
+{
+    if (userId != null)
+    {
+        <EditForm Model="book" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <h1>
+                @(Id != null || Id != Guid.Empty ? "Edit" : "Create") Book
+            </h1>
+            <br/>
+            <div class="row">
+                <div class="col-2">
+                    <ImageUpload OnChange="OnImageChange" Image="@book.Image"/>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="title" placeholder="Title" @bind-value="book.Title" />
+                        <label for="title">Title</label>
+                        <ValidationMessage For="() => book.Title" />
+                    </div>
+                    <br/>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Description" rows="5" id="Description" @bind="book.Description"></textarea>
+                        <label for="Description">Description</label>
+                        <ValidationMessage For="() => book.Description" />
+                    </div>
+                </div>
+            </div>
+            <h2>Genres:</h2>
+            <div class="row">
+                <ValidationMessage For="() => book.Genres" />
+                @foreach (var genre in genres.OrderBy(x=>x.Name))
+                {
+                    <div class="col-4 checkbox-container">
+                        <input type="checkbox" id="check-@genre.Name" @onclick="() => ToggleGenre(genre.Id)" checked="@IsGenreSelcted(genre.Id)">
+                        <label for="check-@genre.Name">@genre.Name</label>
+                    </div>
+                }
+            </div>
+            <h2>Tags:</h2>
+            <div class="row">
+                <ValidationMessage For="() => book.Tags" />
+                <div class="col">
+                    <AntDesign.Select DataSource="@tags"
+                                      EnableSearch="true"
+                                      ValueName="@nameof(TagDTO.Id)"
+                                      LabelName="@nameof(TagDTO.Name)"
+                                      TItemValue="Guid"
+                                      TItem="TagDTO"
+                                      Placeholder="Tag"
+                                      ShowArrowIcon="false"
+                                      SearchDebounceMilliseconds="300"
+                                      ShowSearchIcon="true"
+                                      Class="author-search-select"
+                                      OnSelectedItemChanged="s => OnTagSelected(s)">
+                    </AntDesign.Select>
+                </div>
+                <div class="col">
+                    @foreach (var tag in selectedTags)
+                    {
+                        <span class="badge badge-pill" style="background: lightgray; margin-right: 5px; color: black">@tag.Name <Icon Type="close-circle" Theme="IconThemeType.Outline" @onclick="() => RemoveTag(tag.Id)"/></span>
+                    }
+                </div>
+            </div>
+
+            <br/>
+
+            <button type="submit">Submit</button>
+        </EditForm>
+    }
+    else
+    {
+        <NotLoggedIn />
+    }
+}

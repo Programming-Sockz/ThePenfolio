@@ -1,0 +1,39 @@
+﻿@using AntDesign
+@using ThePenfolio.Shared.Enums
+<EditForm Model="Chapter" OnValidSubmit="OnValidSubmit">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="title" placeholder="Chapter Name" @bind-value="Chapter.Name" />
+        <label for="title">Chapter Name</label>
+        <ValidationMessage For="() => Chapter.Name" />
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="authornotetop" placeholder="Note from the author" @bind-value="Chapter.AuthorNoteTop" />
+        <label for="authornotetop">Note from the author</label>
+    </div>
+    <div>
+        <textarea placeholder="Chapter Content" rows="20" id="content" @bind="Chapter.Content"></textarea>
+        <ValidationMessage For="() => Chapter.Content" />
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="authornotebottom" placeholder="Note from the author" @bind-value="Chapter.AuthorNoteBottom" />
+        <label for="authornotebottom">Note from the author</label>
+    </div>
+    @if(Chapter.Id == Guid.Empty || Chapter.ReleasedOn == null || Chapter.ReleasedOn > DateTime.Now)
+    {
+        <br/>
+        <select @onchange="OnReleaseTypeSelected">
+            <option selected="@IsReleaseTypeSelected(ReleaseType.Draft)" value="@ReleaseType.Draft">Save as Draft</option>
+            <option selected="@IsReleaseTypeSelected(ReleaseType.Published)" value="@ReleaseType.Published">Release immediately</option>
+            <option selected="@IsReleaseTypeSelected(ReleaseType.FutureRelease)" value="@ReleaseType.FutureRelease">Set release date</option>
+        </select>
+        @if (showReleaseDatePicker)
+        {
+            <DatePicker TValue="DateTime?" ShowTime="@("HH:mm")"
+                        Format="@("dd.MM.yyyy HH:mm")"
+                        @bind-Value="Chapter.ReleasedOn"
+                        DisabledDate="date => date <= DateTime.Today"/>
+        }
+    }
+    <br/>
+    <button type="submit" class="btn btn-primary">@(Chapter.Id == Guid.Empty ? "Create" : "Edit")</button>
+</EditForm>

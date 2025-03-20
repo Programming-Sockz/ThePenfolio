@@ -1,0 +1,59 @@
+﻿@using Blazored.Modal
+@using ThePenfolio.Shared.DTOs
+@using AntDesign
+
+<button @onclick="CreateNewChapter">Create new Chapter</button>
+@foreach (var chapter in Chapters.OrderBy(x => x.ReleasedOn == null).ThenByDescending(x => x.CreatedOn))
+{
+    <div class="row">
+        <div class="col" @onclick="()=>ReadChapter(chapter.Id)">
+            @chapter.Name
+        </div>
+        @if(IsAuthorView)
+        {
+            <div class="col">
+                Created on: @chapter.CreatedOn.ToString("dd.MM.yyyy HH.mm") <small>(last edit: @chapter.LastEditedOn.ToString("dd.MM.yyyy HH:mm")</small>
+            </div>
+        }
+        @if(!chapter.ReleasedOn.HasValue)
+        {
+            <div class="col">DRAFT</div>
+        }
+        else
+        {
+            if(chapter.ReleasedOn > DateTime.Now)
+            {
+                <div class="col">Scheduled for release on: @chapter.ReleasedOn.Value.ToString("dd.MM.yyyy HH:mm")</div>
+            }
+            else
+            {
+                <div class="col">Released on: @chapter.ReleasedOn.Value.ToString("dd.MM.yyyy HH:mm")</div>
+            }
+        }
+        <div class="col-1">
+            <Icon Type="edit" Theme="IconThemeType.Outline" @onclick="()=>EditChapter(chapter.Id)"/>
+        </div>
+    </div>
+}
+
+@code {
+    [CascadingParameter] public BlazoredModalInstance BlazoredModal { get; set; }
+    [Parameter] public bool IsAuthorView { get; set; }
+    [Parameter] public List<ChapterDTO> Chapters { get; set; }
+    [Parameter] public Guid BookId { get; set; }
+    [Inject] public NavigationManager NavigationManager { get; set; }
+
+    private void ReadChapter(Guid chapterId)
+    {
+        NavigationManager.NavigateTo($"/read/{chapterId}");
+    }
+    
+    private void EditChapter(Guid chapterId)
+    {
+        NavigationManager.NavigateTo($"/editChapter/{chapterId}");
+    }
+    private void CreateNewChapter()
+    {
+        NavigationManager.NavigateTo($"addchapter/{BookId}");
+    }
+}
