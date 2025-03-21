@@ -194,7 +194,7 @@ namespace ThePenfolio.Server.Controllers
         }
 
         [HttpGet("author/{id}")]
-        public async Task<ActionResult<BookDTO>> GetByAuthor(Guid id, [FromQuery] bool isAuthorView = false)
+        public async Task<ActionResult<List<BookDTO>>> GetByAuthor(Guid id, [FromQuery] bool isAuthorView = false)
         {
             var books = await context.Books
                 .Where(x=>x.AuthorId == id)
