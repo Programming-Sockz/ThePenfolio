@@ -1,3 +1,5 @@
+@using Blazored.LocalStorage
+@using ThePenfolio.Client.Shared.model
 <nav class="top-row">
     <div>
         <img src="/images/softtec.webp" class="softtec-logo" />
@@ -5,7 +7,7 @@
     <div class="nav-item-container">
         <div class="nav-item">
             <NavLink href="dashboard">
-                Dashboard
+                Creator Dashboard
             </NavLink>
         </div>
         <div class="nav-item">
@@ -14,9 +16,37 @@
             </NavLink>
         </div>
         <div class="nav-item">
-            <NavLink href="logout">
-                Abmelden
-            </NavLink>
+            @if (userId != null)
+            {
+                <NavLink href="logout">
+                    Logout
+                </NavLink>
+            }
+            else
+            {
+                <NavLink href="login">
+                    Login
+                </NavLink>
+            }
         </div>
     </div>
 </nav>
+
+@code{
+    [Inject] public ILocalStorageService LocalStorage { get; set; }
+
+    private Guid? userId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var loginStamp = await LocalStorage.GetItemAsync<LoginStamp>(LoginStamp.LoginStampStorageKey);
+        if(loginStamp != null)
+        {
+            userId = loginStamp.UserId;
+        }
+        else
+        {
+            userId = null;
+        }
+    }
+}

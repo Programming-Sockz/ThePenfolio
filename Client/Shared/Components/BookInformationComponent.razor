@@ -12,7 +12,7 @@
     <div class="col">
         <div class="row">
             <div class="col">
-                <h1>@Book.Title</h1>
+                <h1><a href="book/@Book.Id">@Book.Title</a></h1>
             </div>
             @if(ChildContent != null)
             {
@@ -21,19 +21,20 @@
                 </div>
             }
         </div>
+        <p><a href="author/@Book.AuthorId">@Book.Author.UserName</a></p>
         <p>@Book.Description</p>
         <h2>Genres:</h2>
         <div class="genre-container">
             @foreach (var genre in Book.Genres)
             {
-                <span class="genre-pill">@genre.Name</span>
+                <span class="genre-pill"><a href="genre/@genre.Id">@genre.Name</a></span>
             }
         </div>
         <h2>Tags:</h2>
         <div class="tag-container">
             @foreach (var tag in Book.Tags)
             {
-                <span class="tag-pill">@tag.Name</span>
+                <span class="tag-pill"><a href="tag/@tag.Id">@tag.Name</a></span>
             }
         </div>
     </div>

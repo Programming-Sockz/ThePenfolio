@@ -1,0 +1,14 @@
+﻿@page "/logout"
+@using Blazored.LocalStorage
+@using ThePenfolio.Client.Shared.model
+
+@code {
+    [Inject] public NavigationManager NavigationManager { get; set; }
+    [Inject] public ILocalStorageService LocalStorage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LocalStorage.RemoveItemAsync(LoginStamp.LoginStampStorageKey);
+        NavigationManager.NavigateTo("/", true);
+    }
+}

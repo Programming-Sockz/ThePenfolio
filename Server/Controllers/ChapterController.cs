@@ -2,6 +2,7 @@
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using ThePenfolio.Server.Models;
 using ThePenfolio.Server.Services;
 using ThePenfolio.Shared.DTOs;
@@ -62,18 +63,22 @@ namespace ThePenfolio.Server.Controllers
         public async Task<ActionResult<ChapterDTO>> GetChapterById(Guid id)
         {
             var chapter = await _context.Chapters
+                .Include(x => x.Book)
+                    .ThenInclude(x => x.Author)
+                .Include(x => x.Book)
+                    .ThenInclude(x => x.Chapters)
+                        .ThenInclude(x => x.ChapterUserLikes)
+                .Include(x=>x.ChapterUserLikes)
                 .Include(x=>x.Book)
-                    .ThenInclude(x=>x.Author)
-                .Include(x=>x.Book)
-                    .ThenInclude(x=>x.Chapters)
                 .FirstOrDefaultAsync(x=>x.Id == id);
 
             if (chapter == null)
             {
                 return NotFound();
             }
-            
+
             chapter.Book.Chapters = chapter.Book.Chapters
+                    .OrderBy(x=>x.ReleasedOn)
                     .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
                     .Select(x => new Chapter
                     {
@@ -84,8 +89,11 @@ namespace ThePenfolio.Server.Controllers
                         AuthorNoteBottom = "",
                         AuthorNoteTop = "",
                         ReleasedOn = x.ReleasedOn,
-                        CreatedOn = x.CreatedOn
-                    }).ToList();
+                        CreatedOn = x.CreatedOn,
+                        LastEditedOn = x.LastEditedOn,
+                        ChapterUserLikes = x.ChapterUserLikes
+                    })
+                    .ToList();
 
             
             var chapterDTO = _mapper.Map<ChapterDTO>(chapter);

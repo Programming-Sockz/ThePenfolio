@@ -1,0 +1,62 @@
+﻿@page "/book/{BookId:guid}"
+@using AntDesign
+
+@if(book.Id != Guid.Empty)
+{
+    <div class="row">
+        <div class="col-3">
+            @if (!string.IsNullOrEmpty(book.Image))
+            {
+                <img src="@book.Image" alt="Uploaded Image" style="width:100%" />
+            }
+            else
+            {
+                <img src="/Images/placeholder.jpg" style="width:100%" />
+            }
+        </div>
+        <div class="col">
+            <h1>@book.Title</h1>
+            <span>
+                <Icon Type="heart" Theme="IconThemeType.Outline"/> @book.Chapters.Where(x=>x.ChapterUserLikes != null).Sum(x=> x.ChapterUserLikes.Count) Likes
+            </span>
+            <span>
+                <Icon Type="unordered-list" Theme="IconThemeType.Outline" /> @book.Chapters.Count Chapters
+            </span>
+            <br />
+            <h3>By: <a href="author/@book.AuthorId">@book.Author.UserName</a></h3>
+            <br />
+            <a href="read/@book.Chapters.First().Id">Read first Chapter</a>
+        </div>
+    </div>
+    <div class="row">
+        <p>@book.Description</p>
+        <h2>Genres:</h2>
+        <div class="genre-container">
+            @foreach (var genre in book.Genres)
+            {
+                <span class="genre-pill"><a href="genre/@genre.Id">@genre.Name</a></span>
+            }
+        </div>
+        <h2>Tags:</h2>
+        <div class="tag-container">
+            @foreach (var tag in book.Tags)
+            {
+                <span class="tag-pill"><a href="tag/@tag.Id">@tag.Name</a></span>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <h2>Chapters:</h2>
+        @foreach(var chapter in book.Chapters)
+        {
+            <div class="row">
+                <div class="col">
+                    <a href="read/@chapter.Id">@chapter.Name</a>
+                </div>
+                <div class="col text-end">
+                    <small>@chapter.ReleasedOn!.Value.ToString("dd.MM.yyyy HH:mm")</small>
+                </div>
+            </div>
+        }
+    </div>
+}

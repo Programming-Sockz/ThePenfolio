@@ -1,0 +1,28 @@
+﻿@page "/genre/{GenreId:guid}"
+@using ThePenfolio.Client.Shared.Components
+@using ThePenfolio.Shared.DTOs
+@using ThePenfolio.Shared.libraries
+
+@if(genre.Id != Guid.Empty)
+{
+    <h1>@genre.Name</h1>
+    <h3>Books:</h3>
+    @foreach(var book in books)
+    {
+        <BookInformationComponent Book="@book" />
+    }
+}
+
+@code {
+    [Parameter] public Guid GenreId { get; set; }
+    [Inject] public HttpClient Http { get; set; }
+    private List<BookDTO> books = new List<BookDTO>();
+    private GenreDTO genre = new GenreDTO();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        books = await Http.GetFromJsonAsync<List<BookDTO>>(ApiRoutes.Genres.GET_BooksById(GenreId));
+        genre = await Http.GetFromJsonAsync<GenreDTO>(ApiRoutes.Genres.GET_ById(GenreId));
+        StateHasChanged();
+    }
+}

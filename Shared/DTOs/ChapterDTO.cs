@@ -17,5 +17,6 @@ namespace ThePenfolio.Shared.DTOs
         public string? AuthorNoteBottom { get; set; }
         [AdaptIgnore]
         public BookDTO? Book { get; set; }
+        public ICollection<ChapterUserLikesDTO>? ChapterUserLikes { get; set; }
     }
 }

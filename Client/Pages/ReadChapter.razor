@@ -1,0 +1,94 @@
+﻿@page "/read/{ChapterId:guid}"
+@using AntDesign
+@using ThePenfolio.Client.Shared.Components
+
+@if (chapter.Id != Guid.Empty)
+{
+    <div style="width: 100%" class="text-center">
+        <div>
+            <h1>
+                @chapter.Name
+            </h1>
+        </div>
+        <div>
+            <a href="book/@chapter.BookId">@chapter.Book.Title</a> by <a href="author/@chapter.Book.Author.Id">@chapter.Book.Author.UserName</a>
+        </div>
+        <div>
+            @if (string.IsNullOrEmpty(chapter.Book.Image))
+            {
+                <img width="200px" src="Images/placeholder.jpg" alt="book image"/>
+            }
+            else
+            {
+                <img width="200px" src="@chapter.Book.Image" alt="book image"/>
+            }
+        </div>
+        <div>
+            <span>
+                @if (chapter.ChapterUserLikes != null && chapter.ChapterUserLikes.Any(x => x.UserId == userId))
+                {
+                    <Icon Type="heart" Theme="IconThemeType.Fill" Style="color:red; cursor:pointer" OnClick="ToggleLike"/>
+                }
+                else
+                {
+                    <Icon Type="heart" Theme="IconThemeType.Outline" Style="color:red; cursor:pointer" OnClick="ToggleLike" />
+                }
+            </span>
+            @if (chapter.ChapterUserLikes != null)
+            {
+                <span>
+                    @chapter.ChapterUserLikes.Count
+                </span>
+            }
+            else
+            {
+                <span>
+                    0
+                </span>
+            }
+        </div>
+    </div>
+    <div style="width: 100%">
+        <ChapterStepper NextChapterId="@nextChapterId" PreviousChapterId="@previousChapterId"/>
+    </div>
+    <div style="width: 100%">
+        <div style="border-bottom: 1px solid black; margin-bottom:10px">
+            <h3>Note from the Author:</h3>
+            <p>@chapter.AuthorNoteTop</p>
+        </div>
+        <div>
+            @chapter.Content
+        </div>
+        <div style="border-top: 1px solid black; margin-top: 10px">
+            <h3>Note from the Author:</h3>
+            <p>@chapter.AuthorNoteBottom</p>
+        </div>
+    </div>
+    <div style="width: 100%">
+        <span class="float-end">
+            <span>
+                @if (chapter.ChapterUserLikes != null && chapter.ChapterUserLikes.Any(x => x.UserId == userId))
+                {
+                    <Icon Type="heart" Theme="IconThemeType.Fill" Style="color:red; cursor:pointer" OnClick="ToggleLike" />
+                }
+                else
+                {
+                    <Icon Type="heart" Theme="IconThemeType.Outline" Style="color:red; cursor:pointer" OnClick="ToggleLike" />
+                }
+            </span>
+            @if (chapter.ChapterUserLikes != null)
+            {
+                <span>
+                    @chapter.ChapterUserLikes.Count
+                </span>
+            }
+            else
+            {
+                <span>
+                    0
+                </span>
+            }
+        </span>
+        <ChapterStepper NextChapterId="@nextChapterId" PreviousChapterId="@previousChapterId"/>
+    </div>
+}

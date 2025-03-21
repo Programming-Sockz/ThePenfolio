@@ -70,6 +70,7 @@ namespace ThePenfolio.Server.Controllers
                 .Include(tg=>tg.BookTags)
                 .ThenInclude(t=>t.Tag)
                 .Include(b=>b.Chapters)
+                .ThenInclude(c=>c.ChapterUserLikes)
                 .FirstOrDefaultAsync(x=>x.Id == bookId);
 
             if (book == null)
@@ -88,7 +89,8 @@ namespace ThePenfolio.Server.Controllers
                     AuthorNoteBottom = "",
                     AuthorNoteTop = "",
                     ReleasedOn = x.ReleasedOn,
-                    CreatedOn = x.CreatedOn
+                    CreatedOn = x.CreatedOn,
+                    ChapterUserLikes = x.ChapterUserLikes
                 }).ToList();
 
             return Ok(book.Adapt<BookDTO>());
@@ -202,6 +204,7 @@ namespace ThePenfolio.Server.Controllers
                 .Include(tg => tg.BookTags)
                 .ThenInclude(t => t.Tag)
                 .Include(b=>b.Chapters)
+                .ThenInclude(c=>c.ChapterUserLikes)
                 .ToListAsync();
 
             if(books == null)
@@ -223,7 +226,9 @@ namespace ThePenfolio.Server.Controllers
                             AuthorNoteBottom = "",
                             AuthorNoteTop = "",
                             ReleasedOn = x.ReleasedOn,
-                            CreatedOn = x.CreatedOn
+                            CreatedOn = x.CreatedOn,
+                            LastEditedOn = x.LastEditedOn,
+                            ChapterUserLikes = x.ChapterUserLikes
                         }).ToList();
                     return book;
                 }).ToList();
@@ -243,7 +248,9 @@ namespace ThePenfolio.Server.Controllers
                             AuthorNoteBottom = "",
                             AuthorNoteTop = "",
                             ReleasedOn = x.ReleasedOn,
-                            CreatedOn = x.CreatedOn
+                            CreatedOn = x.CreatedOn,
+                            LastEditedOn = x.LastEditedOn,
+                            ChapterUserLikes = x.ChapterUserLikes
                         }).ToList();
                     return book;
                 }).ToList();

@@ -31,7 +31,7 @@ namespace ThePenfolio.Client.Pages
                     if (responseDTO.Success)
                     {
                         await LocalStorageService.SetItemAsync(LoginStamp.LoginStampStorageKey, new LoginStamp(responseDTO));
-                        NavigationManager.NavigateTo("");
+                        NavigationManager.NavigateTo("", true);
                     }
                 }
 

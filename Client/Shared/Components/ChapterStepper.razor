@@ -1,0 +1,25 @@
+﻿
+<div class="row" style="width: 100%">
+    <div class="col-6">
+        <button class="btn btn-primary" disabled="@(PreviousChapterId == Guid.Empty)" @onclick="()=>NavigateToChapter(PreviousChapterId)">Previous Chapter</button>
+    </div>
+    <div class="col-6">
+        <span class="float-end">
+            <button class="btn btn-primary" disabled="@(NextChapterId == Guid.Empty)" @onclick="()=>NavigateToChapter(NextChapterId)">Next Chapter</button>
+        </span>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Guid NextChapterId { get; set; }
+    [Parameter] public Guid PreviousChapterId { get; set; }
+    [Inject] public NavigationManager NavigationManager { get; set; }
+    
+    private void NavigateToChapter(Guid chapterId)
+    {
+        if (chapterId != Guid.Empty)
+        {
+            NavigationManager.NavigateTo($"/read/{chapterId}");
+        }
+    }
+}

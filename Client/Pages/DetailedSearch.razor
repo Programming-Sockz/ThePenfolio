@@ -1,0 +1,93 @@
+﻿@page "/detailedSearch"
+@using AntDesign
+@using ThePenfolio.Shared.DTOs
+
+<input type="text" @bind="bookSearch.Title" placeholder="Title"/>
+
+<h2>Includes Genres:</h2>
+<div class="row">
+    @foreach (var genre in genres.OrderBy(x=>x.Name))
+    {
+        <div class="col-4 checkbox-container">
+            <input type="checkbox" id="check-@genre.Name" @onclick="() => ToggleIncludeGenre(genre.Id)" checked="@IsIncludeGenreSelcted(genre.Id)">
+            <label for="check-@genre.Name">@genre.Name</label>
+        </div>
+    }
+</div>
+<h2>Includes Tags:</h2>
+<div class="row">
+    <div class="col">
+        <AntDesign.Select DataSource="@tags"
+        EnableSearch="true"
+        ValueName="@nameof(TagDTO.Id)"
+        LabelName="@nameof(TagDTO.Name)"
+        TItemValue="Guid"
+        TItem="TagDTO"
+        Placeholder="Tag"
+        ShowArrowIcon="false"
+        SearchDebounceMilliseconds="100"
+        ShowSearchIcon="true"
+        Class="author-search-select"
+        OnSelectedItemChanged="s => OnIncludeTagSelected(s)">
+        </AntDesign.Select>
+    </div>
+    <div class="col">
+        @foreach (var tag in selectedIncludeTags)
+        {
+            <span class="badge badge-pill" style="background: lightgray; margin-right: 5px; color: black">@tag.Name <Icon Type="close-circle" Theme="IconThemeType.Outline" @onclick="() => RemoveIncludeTag(tag.Id)"/></span>
+        }
+    </div>
+</div>
+<h2>Excludes Genres:</h2>
+<div class="row">
+    @foreach (var genre in genres.OrderBy(x => x.Name))
+    {
+        <div class="col-4 checkbox-container">
+            <input type="checkbox" id="check-@genre.Name" @onclick="() => ToggleExcludeGenre(genre.Id)" checked="@IsExcludeGenreSelcted(genre.Id)">
+            <label for="check-@genre.Name">@genre.Name</label>
+        </div>
+    }
+</div>
+<h2>Excludes Tags:</h2>
+<div class="row">
+    <div class="col">
+        <AntDesign.Select DataSource="@tags"
+        EnableSearch="true"
+        ValueName="@nameof(TagDTO.Id)"
+        LabelName="@nameof(TagDTO.Name)"
+        TItemValue="Guid"
+        TItem="TagDTO"
+        Placeholder="Tag"
+        ShowArrowIcon="false"
+        SearchDebounceMilliseconds="100"
+        ShowSearchIcon="true"
+        Class="author-search-select"
+        OnSelectedItemChanged="s => OnExcludeTagSelected(s)">
+        </AntDesign.Select>
+    </div>
+    <div class="col">
+        @foreach (var tag in selectedExcludeTags)
+        {
+            <span class="badge badge-pill" style="background: lightgray; margin-right: 5px; color: black">@tag.Name <Icon Type="close-circle" Theme="IconThemeType.Outline" @onclick="() => RemoveExcludeTag(tag.Id)" /></span>
+        }
+    </div>
+</div>
+<button @onclick="Search">Search</button>
+<hr />
+<h1>
+    Search Results
+</h1>
+@if (books != null)
+{
+    if(books.Any())
+    {
+        @foreach (var book in books)
+        {
+            <ThePenfolio.Client.Shared.Components.BookInformationComponent Book="book" />
+        }
+    }
+    else
+    {
+        <h2>No books found</h2>
+    }
+}

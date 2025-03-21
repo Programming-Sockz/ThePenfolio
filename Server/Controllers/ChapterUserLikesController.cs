@@ -10,7 +10,7 @@ namespace ThePenfolio.Server.Controllers
     public class ChapterUserLikesController(IMapper mapper, ThePenfolioDbContext context) : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> CreateChapterUserLike(ChapterUserLikesDTO chapterUserLikesDTO)
+        public async Task<IActionResult> ToggleChapterUserLike(ChapterUserLikesDTO chapterUserLikesDTO)
         {
             var chapterUserLike = context.ChapterUserLikes.FirstOrDefault(x => x.ChapterId == chapterUserLikesDTO.ChapterId);
 

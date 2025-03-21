@@ -1,0 +1,29 @@
+﻿@page "/author/{AuthorId:guid}"
+@using ThePenfolio.Client.Shared.Components
+@using ThePenfolio.Shared.DTOs
+@using ThePenfolio.Shared.libraries
+
+@if(author.Id != Guid.Empty)
+{
+    <h1>@author.UserName</h1>
+    <h2>@author.Bio</h2>
+    <h3>Books:</h3>
+    @foreach(var book in books)
+    {
+        <BookInformationComponent Book="@book" />
+    }
+}
+
+@code {
+    [Parameter] public Guid AuthorId { get; set; }
+    [Inject] public HttpClient Http { get; set; }
+    private List<BookDTO> books = new List<BookDTO>();
+    public UserDTO author = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        books = await Http.GetFromJsonAsync<List<BookDTO>>(ApiRoutes.Book.GET_ByAuthorId(AuthorId));
+        author = await Http.GetFromJsonAsync<UserDTO>(ApiRoutes.Author.GET_ById(AuthorId));
+        StateHasChanged();
+    }
+}

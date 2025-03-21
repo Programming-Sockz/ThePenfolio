@@ -1,9 +1,11 @@
-﻿using MapsterMapper;
+﻿using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThePenfolio.Server.Models;
 using ThePenfolio.Server.Services;
 using ThePenfolio.Shared.DTOs;
+using static ThePenfolio.Shared.libraries.ApiRoutes;
 namespace ThePenfolio.Server.Controllers
 {
     [ApiController]
@@ -74,22 +76,36 @@ namespace ThePenfolio.Server.Controllers
         {
             var books = await _context.Books
                 .Include(x => x.Author)
-                .Include(b => b.BookTags)
-                .ThenInclude(bg => bg.Tag)
-                .Include(tg=>tg.BookGenres)
-                .ThenInclude(t=>t.Genre)
-                .Include(x=>x.Chapters)
-                .Where(x => x.BookTags != null && x.BookTags.Any(bg => bg.TagId == tagId))
+                .Include(b => b.BookGenres)
+                .ThenInclude(bg => bg.Genre)
+                .Include(tg => tg.BookTags)
+                .ThenInclude(t => t.Tag)
+                .Include(b => b.Chapters)
+                    .ThenInclude(c => c.ChapterUserLikes)
+                .Where(x => x.BookTags != null && x.BookTags.Any(x => x.TagId == tagId))
                 .ToListAsync();
-            
-            foreach(var chapter in books.SelectMany(x=>x.Chapters))
+
+            books = books.Select(book =>
             {
-                chapter.AuthorNoteBottom = null;
-                chapter.AuthorNoteTop = null;
-                chapter.Content = "";
-            }
-            
-            return _mapper.Map<List<BookDTO>>(books);
+                book.Chapters = book.Chapters
+                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                    .Select(x => new Models.Chapter
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Content = "",
+                        BookId = x.BookId,
+                        AuthorNoteBottom = "",
+                        AuthorNoteTop = "",
+                        ReleasedOn = x.ReleasedOn,
+                        CreatedOn = x.CreatedOn,
+                        LastEditedOn = x.LastEditedOn,
+                        ChapterUserLikes = x.ChapterUserLikes
+                    }).ToList();
+                return book;
+            }).ToList();
+
+            return books.Adapt<List<BookDTO>>();
         }
     }
 }

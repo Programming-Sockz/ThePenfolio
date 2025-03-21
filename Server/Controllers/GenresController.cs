@@ -77,20 +77,34 @@ namespace ThePenfolio.Server.Controllers
                 .Include(x => x.Author)
                 .Include(b => b.BookGenres)
                 .ThenInclude(bg => bg.Genre)
-                .Include(tg=>tg.BookTags)
-                .ThenInclude(t=>t.Tag)
-                .Include(x=>x.Chapters)
-                .Where(x => x.BookGenres != null && x.BookGenres.Any(bg => bg.GenreId == genreId))
+                .Include(tg => tg.BookTags)
+                .ThenInclude(t => t.Tag)
+                .Include(b => b.Chapters)
+                .ThenInclude(c => c.ChapterUserLikes)
+                .Where(x=>x.BookGenres != null && x.BookGenres.Any(x=>x.GenreId == genreId))
                 .ToListAsync();
-            
-            foreach(var chapter in books.SelectMany(x=>x.Chapters))
+
+            books = books.Select(book =>
             {
-                chapter.AuthorNoteBottom = null;
-                chapter.AuthorNoteTop = null;
-                chapter.Content = "";
-            }
-            
-            return _mapper.Map<List<BookDTO>>(books);
+                book.Chapters = book.Chapters
+                    .Where(x => x.ReleasedOn != null && x.ReleasedOn < DateTime.Now)
+                    .Select(x => new Chapter
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Content = "",
+                        BookId = x.BookId,
+                        AuthorNoteBottom = "",
+                        AuthorNoteTop = "",
+                        ReleasedOn = x.ReleasedOn,
+                        CreatedOn = x.CreatedOn,
+                        LastEditedOn = x.LastEditedOn,
+                        ChapterUserLikes = x.ChapterUserLikes
+                    }).ToList();
+                return book;
+            }).ToList();
+
+            return books.Adapt<List<BookDTO>>();
         }
     }
 }
