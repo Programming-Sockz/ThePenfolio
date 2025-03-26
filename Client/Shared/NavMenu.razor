@@ -5,14 +5,22 @@
         <img src="/images/softtec.webp" class="softtec-logo" />
     </div>
     <div class="nav-item-container">
-        <div class="nav-item">
-            <NavLink href="dashboard">
-                Creator Dashboard
-            </NavLink>
-        </div>
+        @if (userId != null)
+        {
+            <div class="nav-item">
+                <NavLink href="dashboard">
+                    Creator Dashboard
+                </NavLink>
+            </div>
+        }
         <div class="nav-item">
             <NavLink href="" Match="NavLinkMatch.All">
                 Home
+            </NavLink>
+        </div>
+        <div class="nav-item">
+            <NavLink href="detailedSearch">
+                Search
             </NavLink>
         </div>
         <div class="nav-item">
